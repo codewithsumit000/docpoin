@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocPoint Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: #f5f9fc;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0077b6;
+        padding: 10px 20px;
+        height: 50px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        margin: 0 10px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #caf0f8;
+      }
+
+      .auth-buttons a {
+        text-decoration: none;
+        color: #0077b6;
+        background-color: white;
+        padding: 6px 14px;
+        border-radius: 8px;
+        margin-left: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .auth-buttons a:hover {
+        background-color: #005f8e;
+        color: white;
+      }
+
+      .mid-body {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        height: 550px;
+        margin-top: 60px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 200px;
+        padding: 0 50px;
+        color: white;
+      }
+
+      .mid-left {
+        max-width: 550px;
+        margin-left: 50px;
+      }
+
+      .mid-left h1 {
+        font-size: 38px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+      }
+
+      .small-img {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        gap: 15px;
+      }
+
+      .small-img img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .small-img p {
+        color: white;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .booking button {
+        background-color: white;
+        border: none;
+        padding: 22px 34px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .booking button a {
+        text-decoration: none;
+        color: #0077b6;
+      }
+
+      button:hover {
+        background-color: #caf0f8;
+        transform: scale(1.05);
+      }
+
+      .mid-right img {
+        width: 1200px;
+        max-width: 100%;
+        border-radius: 15px;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+      }
+
+      .speciality {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        height: 550px;
+        margin-top: 63px;
+        border-radius: 20px;
+
+        padding: 0 50px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .department {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .department span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        width: 150px;
+        cursor: pointer;
+      }
+
+      .department span:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25),
+          0 0 20px rgba(0, 180, 216, 0.5);
+      }
+
+      .department img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .department p {
+        color: #0077b6;
+        font-size: large;
+        font-weight: bold;
+      }
+
+      .spe-text {
+        text-align: center;
+        line-height: 1;
+        margin-bottom: 35px;
+      }
+
+      .spe-text h1 {
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .spe-text p {
+        width: 500px;
+      }
+      .top-doc {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        height: 850px;
+        margin-top: 70px;
+        border-radius: 20px;
+      }
+      .down-body {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        height: 350px;
+        margin-top: 93px;
+        border-radius: 20px;
+
+        padding: 0 50px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .down-text {
+        font-size: 18px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+      }
+      .down-text button {
+        background-color: white;
+        border: none;
+        padding: 22px 34px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .down-text button a {
+        text-decoration: none;
+        color: #0077b6;
+      }
+
+      .down-text {
+        width: 500px;
+        padding: 40px;
+        margin-left: -10px;
+      }
+      
+      .down-img {
+        margin-bottom: 55px;
+       
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+      }
+      .foot{
+        background-color:#0077b6;
+        padding: 10px 20px;
+        height: 250px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 73px;
+
+      }
+      .foot {
+  background-color: #0077b6;
+  padding: 30px 20px;
+  margin-top: 70px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-middle,
+.footer-right {
+  max-width: 300px;
+}
+
+.footer-middle h3,
+.footer-right h3 {
+  margin-bottom: 12px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  background: white;
+  color: #0077b6;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  background: #caf0f8;
+  transform: translateY(-5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+}
+.nav-links button{
+  background-color: #005f8e;
+  text-decoration: none;
+  border-radius: 12px;
+  width: 80px;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">🩺 DocPoint</div>
+
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./dashboard_contain/doctor.html">Find Doctors</a></li>
+        <li><a href="./dashboard_contain/about.html">About</a></li>
+        <li><a href="./dashboard_contain/contact.html">Contact</a></li>
+        <li><button><a href="./admin_login.php">Admin</a></button></li>
+      </ul>
+
+      <div class="auth-buttons">
+        <a href="./registration.php">Create account </a>
+        <a href="./login.php">login</a>
+      </div>
+    </nav>
+    <div class="mid-body">
+      <div class="mid-left">
+        <h1>Book Appointment With Trusted Doctors</h1>
+        <div class="small-img">
+          <img src="./photo/OIP (1).webp" alt="" />
+          <img src="./photo/OIP (2).webp" alt="" />
+
+          <p>
+            Simply browse through our extensive list of trusted doctors,
+            schedule your appointment hassle-free.
+          </p>
+        </div>
+        <div class="booking">
+          <button><a href="../Doctor_appointment_system/login.php">Book appointment →</a></button>
+        </div>
+      </div>
+      <div class="mid-right">
+        <img src="./photo/back1.png" alt="img" />
+      </div>
+    </div>
+    <div class="speciality">
+      <div class="spe-text">
+        <h1>Find by speciality</h1>
+        <p>
+          Simply browse through our extensive list of trusted doctors, schedule
+          your appointment hassle-free.
+        </p>
+      </div>
+      <div class="department">
+        <span>
+          <img src="./photo/derma.webp" alt="img" />
+          <p>Dermatologist</p>
+        </span>
+        <span>
+          <img src="./photo/neuro.webp" alt="img" />
+          <p>Neurologist</p>
+        </span>
+        <span>
+          <img src="./photo/gyno.webp" alt="img" />
+          <p>Gynecologist</p>
+        </span>
+        <span>
+          <img src="./photo/pered.jpg" alt="img" />
+          <p>pediatricians</p>
+        </span>
+        <span>
+          <img src=".//photo/gas.webp" alt="img" />
+          <p>Gastroenterologist</p>
+        </span>
+      </div>
+    </div>
+    <div class="down-body">
+      <div class="down-text">
+        <h1>Book Appointment With 100+ Trusted Doctors</h1>
+        <button><a href="registration.php">Create account </a></button>
+      </div>
+      <div class="down-img">
+        <img src="./photo/back4-removebg-preview.png" alt="noimg" />
+      </div>
+    </div>
+    <footer class="foot">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <h2>🩺 DocPoint</h2>
+      <p>Your trusted platform to book appointments with verified doctors.</p>
+    </div>
+
+    <div class="footer-middle">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <h3>Contact Us</h3>
+      <p>📍 Nepal</p>
+      <p>📞 +977-98XXXXXXXX</p>
+      <p>📧 docpoint@email.com</p>
+    </div>
+
+  </div>
+
+  <p class="footer-bottom">© 2025 DocPoint. All rights reserved.</p>
+</footer>
+
+  </body>
+</html>

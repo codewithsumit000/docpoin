@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document </title>
+    <link rel="stylesheet" href="../assets/dashboard_conatin.css">
+</head>
+<body>
+    <nav class="navbar">
+  <div class="logo">🩺 DocPoint</div>
+
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../dashboard_contain/doctor.html">Find Doctors</a></li>
+    <li><a href="../dashboard_contain/about.html">About</a></li>
+    <li><a href="../dashboard_contain/contact.html">Contact</a></li>
+  </ul>
+
+  <div class="auth-buttons">
+    <a href="../registration.html">Create account</a>
+    <a href="../login.html">Login</a>
+  </div>
+
+  </nav>
+  <div class="category">
+    <button onclick="filterdoctor('all')">ALL</button>
+    <button onclick="filterdoctor('cardio')">Cardiologist</button>
+    <button onclick="filterdoctor('neuro')">neurologist</button>
+    <button onclick="filterdoctor('pedi')">Pediatrician</button>
+    <button onclick="filterdoctor('gyne')">gynecologist</button>
+    <button onclick="filterdoctor('derma')">dermatologist</button>
+  </div>
+  <br><br>
+  <div class="container">
+  <div class="card cardio">
+    <img src="../photo/find_doctors/KuMud_dhital.webp" alt="Dr. Kumud Dhital">
+    <h3>Dr. Kumud K. Dhital</h3>
+    <p>Cardiothoracic Surgeon</p>
+  </div>
+
+  <div class="card cardio">
+    <img src="../photo/find_doctors/om.jpg" alt="Dr. Om Murti Anil">
+    <h3>Dr. Om Murti Anil</h3>
+    <p>Cardiologist</p>
+  </div>
+
+  <!-- Orthopedic / Reform -->
+  <div class="card neuro">
+    <img src="../photo/find_doctors/govinda.jpg" alt="Dr. Govinda KC">
+    <h3>Dr. Govinda KC</h3>
+    <p>Orthopedic Surgeon & Activist</p>
+  </div>
+
+  <!-- Gynecology & Obstetrics -->
+  <div class="card gyne">
+    <img src="../photo/find_doctors/bhola.webp" alt="Dr. Bhola Rijal">
+    <h3>Dr. Bhola Rijal</h3>
+    <p>Gynecologist & IVF Pioneer</p>
+  </div>
+
+  <div class="card gyne">
+    <img src="../photo/find_doctors/sudha.webp" alt="Dr. Sudha Sharma Gautam">
+    <h3>Dr. Sudha Sharma Gautam</h3>
+    <p>Obstetrician‑Gynecologist</p>
+  </div>
+
+  <!-- Neurosurgery / Neurology -->
+  <div class="card neuro">
+    <img src="../photo/find_doctors/up.webp" alt="Dr. Upendra Devkota">
+    <h3>Dr. Upendra Devkota</h3>
+    <p>Neurosurgeon Pioneer</p>
+  </div>
+
+  <div class="card neuro">
+    <img src="../photo/find_doctors/amit.webp" alt="Dr. Amit Thapa">
+    <h3>Dr. Amit Thapa</h3>
+    <p>Neurosurgeon</p>
+  </div>
+
+  <!-- Pediatrician -->
+  <div class="card pedi">
+    <img src="../photo/find_doctors/di.jpg" alt="Dr. Dinesh Prasad Koirala">
+    <h3>Dr. Dinesh Prasad Koirala</h3>
+    <p>Pediatrician</p>
+  </div>
+
+  
+
+  
+
+  <!-- Dermatology -->
+  <div class="card derma">
+    <img src="../photo/find_doctors/anil.jpg" alt="Dr. Prashann Kumar Jha">
+    <h3>Dr. Anil Kumar Jha</h3>
+    <p>Dermatologist</p>
+  </div>
+
+  <div class="card derma">
+    <img src="../photo/find_doctors/e.webp" alt="Dr. Eliz Aryal Rauniyar">
+    <h3>Dr. Eliz Aryal Rauniyar</h3>
+    <p>Dermatologist</p>
+  </div>
+</div>
+
+<script>
+function filterdoctor(department) {
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    // If "all" is clicked, show all cards
+    if(department === 'all') {
+      card.style.display = 'block';
+    } else {
+      // Check if card contains the department class
+      if(card.classList.contains(department)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+  });
+}
+</script>
+
+</body>
+<style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  .category {
+    margin-top: 40px;
+    display: flex;
+    gap: 17px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px 0;
+    background: #0077b6;
+    border-radius: 10px;
+}
+
+.category button {
+    padding: 10px 18px;
+    border: none;
+    background: #ffffff;
+    color: #0077b6;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category button:hover {
+    background: #00b4d8;
+    color: #fff;
+}
+.container {
+    display: flex;
+    gap: 20px;          
+    flex-wrap: wrap;    
+    justify-content: center; 
+  }
+
+  .card {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: white;
+    padding: 20px;
+    width: 250px;
+    height: 250px;        
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .card:hover {
+    transform: translateY(-5px); 
+  }
+
+  .card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid white;
+  }
+
+  .card h3 {
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+
+  .card p {
+    margin: 0;
+    font-size: 16px;
+  }
+</style>
+</html>

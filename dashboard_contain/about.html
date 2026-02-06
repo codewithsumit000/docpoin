@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+  </head>
+  <link rel="stylesheet" href="../assets/dashboard_conatin.css">
+  <body>
+    <nav class="navbar">
+      <div class="logo">🩺 DocPoint</div>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../dashboard_contain/doctor.html">Find Doctors</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="../dashboard_contain/contact.html">Contact</a></li>
+      </ul>
+
+      <div class="auth-buttons">
+        <a href="../registration.html">Create account</a>
+        <a href="../login.html">Login</a>
+      </div>
+    </nav>
+
+    <section class="about-section">
+      <h2>ABOUT <span>US</span></h2>
+
+      <div class="about-content">
+        <div class="about-image">
+          <img
+            src="../photo/doc4.jpg"
+            alt="Doctors"
+          />
+        </div>
+
+        <div class="about-text">
+          <p>
+            Welcome to Docpoint, your trusted partner in managing your
+            healthcare needs conveniently and efficiently. At Docpoint, we
+            understand the challenges individuals face when it comes to
+            scheduling doctor appointments and managing their health records.
+          </p>
+
+          <p>
+            Docpoint is committed to excellence in healthcare technology. We
+            continuously strive to enhance our platform, integrating the latest
+            advancements to improve user experience and deliver superior
+            service. Whether you're booking your first appointment or managing
+            ongoing care, Docpoint is here to support you every step of the way.
+          </p>
+
+          <h3>Our Vision</h3>
+          <p>
+            Our vision is to create a seamless healthcare experience by bridging
+            the gap between patients and healthcare providers, making quality
+            care accessible when you need it most.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="why-section">
+      <h2>WHY <span>CHOOSE US</span></h2>
+
+      <div class="why-cards">
+        <div class="card">
+          <h4>EFFICIENCY</h4>
+          <p>
+            Streamlined appointment scheduling that fits into your busy
+            lifestyle.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>CONVENIENCE</h4>
+          <p>
+            Access to a trusted network of healthcare professionals near you.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>PERSONALIZATION</h4>
+          <p>
+            Tailored reminders and recommendations to help you stay healthy.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+  <style>
+    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #005f8e; /* MAIN PAGE THEME */
+      color: #333;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-section {
+      background: #ffffff;
+      padding: 70px 8%;
+    }
+
+    .about-section h2 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 50px;
+      color: #222;
+    }
+
+    .about-section h2 span {
+      color: #005f8e;
+    }
+
+    .about-content {
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .about-image img {
+      width: 100%;
+      min-width: 220px;
+      border-radius: 8px;
+      height: 300px;
+      box-shadow: 0 8px 20px rgba(0, 95, 142, 0.25);
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .about-text h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #005f8e;
+    }
+
+    /* ===== WHY CHOOSE US ===== */
+    .why-section {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      padding: 70px 8%;
+    }
+
+    .why-section h2 {
+      text-align: left;
+      font-size: 30px;
+      margin-bottom: 40px;
+    }
+
+    .why-section h2 span {
+      color: #e5eaec;
+    }
+
+    .why-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 30px;
+      border-left: 5px solid #005f8e;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h4 {
+      color: #005f8e;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-content {
+        flex-direction: column;
+      }
+
+      .why-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</html>

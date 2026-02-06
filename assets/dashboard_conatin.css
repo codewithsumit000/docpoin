@@ -1,0 +1,58 @@
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0077b6;
+  padding: 10px 20px;
+  height: 70px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #caf0f8;
+}
+
+/* Auth Buttons */
+.auth-buttons a {
+  text-decoration: none;
+  color: #0077b6;
+  background-color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.auth-buttons a:hover {
+  background-color: #005f8e;
+  color: white;
+}

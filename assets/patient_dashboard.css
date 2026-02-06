@@ -1,0 +1,24 @@
+ .sidebar{
+        width: 200px;
+        height: 100vh;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+
+
+    }
+    .sidebar h2 {
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: #003f5c;
+}
