@@ -2,6 +2,11 @@
 session_start();
 include('connect.php');
 
+if(!isset($_SESSION['patient_id'])){
+    header("Location: ../login.php");
+    exit();
+}
+
 $patient_id = $_SESSION['patient_id'];
 $error = "";
 $success = "";
@@ -17,52 +22,61 @@ $sql = "SELECT d.doctor_id, d.name, d.department, d.qualification, d.photo,
         GROUP BY d.doctor_id";
 $result = mysqli_query($conn, $sql);
 
+
+$form_date = "";
+$form_time = "";
+
 if(isset($_POST['book'])){
     $doctor_id = $_POST['doctor_id'];
     $date = $_POST['appointment_date'];
     $time = $_POST['appointment_time'];
-
+    $form_date = $date;
+    $form_time = $time;
     $show_modal = true; 
 
-    // ✅ Combine date + time to prevent booking past appointments
     $appointment_datetime = $date . ' ' . $time;
     $current_datetime = date('Y-m-d H:i');
 
-    if(strtotime($appointment_datetime) <= strtotime($current_datetime)) {
+    $today = date('Y-m-d');
+    $max_date = date('Y-m-d', strtotime('+7 days'));
+
+    // Validation
+    if($date < $today || $date > $max_date){
+        $error = "You can only book appointments within the next 7 days.";
+    } elseif(strtotime($appointment_datetime) <= strtotime($current_datetime)){
         $error = "You cannot book an appointment in the past.";
     } else {
-        // Check doctor schedule for chosen day
         $dayName = date('l', strtotime($date));
         $schedule_sql = "SELECT * FROM doctor_schedule WHERE doctor_id='$doctor_id' AND day='$dayName'";
         $schedule_result = mysqli_query($conn, $schedule_sql);
 
-        if(mysqli_num_rows($schedule_result) == 0) {
+        if(mysqli_num_rows($schedule_result) == 0){
             $error = "Doctor is not available on $dayName.";
         } else {
             $schedule_row = mysqli_fetch_assoc($schedule_result);
 
-            // Count existing appointments for that doctor on that date
+            // Check max patients
             $count_sql = "SELECT COUNT(*) AS total FROM appointments 
                           WHERE doctor_id='$doctor_id' AND appointment_date='$date'";
             $count_result = mysqli_query($conn, $count_sql);
             $count_row = mysqli_fetch_assoc($count_result);
 
-            if($count_row['total'] >= $schedule_row['max_patients']) {
+            if($count_row['total'] >= $schedule_row['max_patients']){
                 $error = "Doctor has reached the maximum patients for $dayName.";
             } else {
-                // Check if time slot is already booked
+                // Check duplicate time
                 $check_sql = "SELECT * FROM appointments 
                               WHERE doctor_id='$doctor_id' AND appointment_date='$date' AND appointment_time='$time'";
                 $check_result = mysqli_query($conn, $check_sql);
 
-                if(mysqli_num_rows($check_result) > 0) {
+                if(mysqli_num_rows($check_result) > 0){
                     $error = "This time slot is already booked for this doctor. Please choose another time.";
                 } else {
-                    // Insert appointment
                     $insert_sql = "INSERT INTO appointments (patient_id, doctor_id, appointment_date, appointment_time)
                                    VALUES ('$patient_id','$doctor_id','$date','$time')";
-                    if(mysqli_query($conn, $insert_sql)) {
+                    if(mysqli_query($conn, $insert_sql)){
                         $success = "Appointment booked successfully!";
+                        $form_date = $form_time = "";
                     } else {
                         $error = "Error booking appointment: ".mysqli_error($conn);
                     }
@@ -148,10 +162,14 @@ body { display:flex; background:#f5f8ff; }
       <?php } ?>
 
       <label>Date</label>
-      <input type="date" name="appointment_date" required min="<?php echo date('Y-m-d'); ?>">
+      <input type="date" name="appointment_date" required
+             min="<?php echo date('Y-m-d'); ?>" 
+             max="<?php echo date('Y-m-d', strtotime('+7 days')); ?>"
+             value="<?php echo htmlspecialchars($form_date); ?>">
 
       <label>Time</label>
-      <input type="time" name="appointment_time" id="appointment_time"  required>
+      <input type="time" name="appointment_time" id="appointment_time" required
+             value="<?php echo htmlspecialchars($form_time); ?>">
 
       <button type="submit" name="book">Confirm Booking</button>
     </form>
@@ -172,20 +190,22 @@ function closeForm() {
   document.getElementById("appointmentModal").style.display = "block";
 <?php } ?>
 
-/* ===== ONLY ADDITION START (PAST TIME BLOCK) ===== */
+// Block past times for today
 const dateInput = document.querySelector('input[name="appointment_date"]');
 const timeInput = document.querySelector('input[name="appointment_time"]');
 
 function blockPastTime() {
     const today = new Date().toISOString().split("T")[0];
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 7);
+    const maxDateStr = maxDate.toISOString().split("T")[0];
+    dateInput.setAttribute("max", maxDateStr);
 
-    if (dateInput.value === today) {
+    if(dateInput.value === today){
         const now = new Date();
-        now.setMinutes(now.getMinutes() + 10); // 10-minute buffer
-
-        const hh = String(now.getHours()).padStart(2, '0');
-        const mm = String(now.getMinutes()).padStart(2, '0');
-
+        now.setMinutes(now.getMinutes() + 10); // buffer
+        const hh = String(now.getHours()).padStart(2,'0');
+        const mm = String(now.getMinutes()).padStart(2,'0');
         timeInput.min = `${hh}:${mm}`;
     } else {
         timeInput.min = "00:00";
@@ -193,10 +213,8 @@ function blockPastTime() {
 }
 
 dateInput.addEventListener("change", blockPastTime);
-/* ===== ONLY ADDITION END ===== */
-
+blockPastTime(); // initial
 </script>
-
 
 </body>
 </html>

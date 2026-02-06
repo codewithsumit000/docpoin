@@ -23,7 +23,7 @@ if(isset($_POST['update'])) {
 
     // Update name
     if($name !== $user['name']) {
-        mysqli_query($conn, "UPDATE patients SET name='$name' WHERE doctor_id='$doctor_id'");
+        mysqli_query($conn, "UPDATE doctors SET name='$name' WHERE doctor_id='$doctor_id'");
         $success = "Profile updated successfully!";
     }
 
