@@ -1,11 +1,11 @@
 <?php
 include "../patient/connect.php";
 
-/* ===== ADD DOCTOR ===== */
+
 if(isset($_POST['add'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password']; // store as plain text
+    $password = $_POST['password']; 
     $qualification = $_POST['qualification'];
     $department = $_POST['department'];
     $description = $_POST['description'];
@@ -20,12 +20,12 @@ if(isset($_POST['add'])){
     exit();
 }
 
-/* ===== UPDATE DOCTOR ===== */
+
 if(isset($_POST['update'])){
     $id = (int)$_POST['doctor_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password']; // plain text
+    $password = $_POST['password']; 
     $qualification = $_POST['qualification'];
     $department = $_POST['department'];
     $description = $_POST['description'];
@@ -50,7 +50,7 @@ if(isset($_POST['update'])){
     exit();
 }
 
-/* ===== DELETE DOCTOR ===== */
+
 if(isset($_GET['delete'])){
     $id = (int)$_GET['delete'];
     $res = mysqli_query($conn,"SELECT photo FROM doctors WHERE doctor_id='$id'");
@@ -61,7 +61,7 @@ if(isset($_GET['delete'])){
     exit();
 }
 
-/* ===== FETCH DOCTORS ===== */
+
 $result = mysqli_query($conn,"SELECT * FROM doctors");
 ?>
 
@@ -70,7 +70,7 @@ $result = mysqli_query($conn,"SELECT * FROM doctors");
 <head>
 <title>Doctors Management</title>
 <style>
-/* Reset & Font */
+
 * {
     margin: 0;
     padding: 0;
@@ -78,26 +78,26 @@ $result = mysqli_query($conn,"SELECT * FROM doctors");
     font-family: "Poppins", sans-serif;
 }
 
-/* Body & Layout */
+
 body {
     display: flex;
     background: #f5f8ff;
 }
 
-/* Main content area */
+
 .content { 
     margin-left: 250px; /* Sidebar width */
     padding: 30px;
     width: calc(100% - 250px);
 }
 
-/* Heading */
+
 h2 { 
     color: #0077b6; 
     margin-bottom: 20px; 
 }
 
-/* Table Styles */
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -117,7 +117,7 @@ th {
     color: white;
 }
 
-/* Buttons */
+
 button {
     padding: 6px 12px;
     margin: 2px;
@@ -126,7 +126,6 @@ button {
     border-radius: 4px;
 }
 
-/* Button Variants */
 .add { 
     background: #0077b6; 
     color: white; 
@@ -142,7 +141,6 @@ button {
     color: white; 
 }
 
-/* Modal Overlay */
 .modal {
     display: none;
     position: fixed;
@@ -151,7 +149,7 @@ button {
     z-index: 999;
 }
 
-/* Modal Box */
+
 .modal-content {
     background: white;
     width: 400px;
@@ -161,7 +159,7 @@ button {
     position: relative;
 }
 
-/* Close Button */
+
 .close {
     position: absolute;
     top: 10px;
@@ -171,14 +169,14 @@ button {
     color: #0077b6;
 }
 
-/* Form Inputs */
+
 input, textarea {
     width: 100%;
     margin-bottom: 10px;
     padding: 8px;
 }
 
-/* Photo Preview */
+
 img {
     max-width: 100px;
     display: block;
@@ -191,7 +189,7 @@ img {
 <link rel="stylesheet" href="admin_sidebar.css">
 <body>
 
-<!-- Sidebar -->
+
 <div class="sidebar">
     <div class="logo">🩺 DocPoint</div>
     <div class="menu">
@@ -203,7 +201,7 @@ img {
     </div>
 </div>
 
-<!-- Content -->
+
 <div class="content">
 <h2>Doctors List</h2>
 <button class="add" onclick="openModal('add')">➕ Add Doctor</button>

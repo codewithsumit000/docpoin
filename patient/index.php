@@ -126,7 +126,7 @@ $appointment_count = $count_row[0];
 
 $today = date('Y-m-d');
 $appointment_query = "
-    SELECT a.*, d.name AS doctor_name, d.department
+    SELECT a.*, d.name AS doctor_name, d.department,a.token
     FROM appointments a
     JOIN doctors d ON a.doctor_id = d.doctor_id
     WHERE a.patient_id='$patient_id' AND a.appointment_date >= '$today'AND a.status != 'cancelled'
@@ -161,7 +161,12 @@ $appointment_result = mysqli_query($conn, $appointment_query);
           <?php while($row = mysqli_fetch_assoc($appointment_result)): ?>
               <div class="appointment-item">
                   <span>Dr. <?php echo $row['doctor_name']; ?> — <?php echo $row['department']; ?> (<?php echo $row['appointment_date']; ?> <?php echo $row['appointment_time']; ?>)</span>
-                  <span class="status <?php echo ucfirst($row['status']); ?>"><?php echo ucfirst($row['status']); ?></span>
+                  <span class="status <?php echo ucfirst($row['status']); ?>"><?php echo ucfirst($row['status']); ?>
+                <?php if ($row['status'] === 'approved' && !empty($row['token'])): ?>
+                <span class="token">
+                    Token number : <b><?php echo $row['token']; ?></b>
+                </span>
+            <?php endif; ?></span>
               </div>
           <?php endwhile; ?>
       <?php else: ?>

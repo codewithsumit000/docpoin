@@ -24,8 +24,24 @@ if(isset($_GET['id']) && isset($_GET['status'])) {
     $verify_result = mysqli_query($conn, $verify_query);
 
     if(mysqli_num_rows($verify_result) > 0) {
-        // Update the status
-        $update_query = "UPDATE appointments SET status = '$status' WHERE appointment_id = '$appointment_id'";
+
+        // 🔑 ADD TOKEN ONLY WHEN APPROVED
+        if($status == 'approved'){
+            $update_query = "
+                UPDATE appointments 
+                SET status = 'approved',
+                    token = IF(token IS NULL, FLOOR(100 + RAND()*900), token)
+                WHERE appointment_id = '$appointment_id'
+            ";
+        } else {
+            // original cancel logic
+            $update_query = "
+                UPDATE appointments 
+                SET status = 'cancelled'
+                WHERE appointment_id = '$appointment_id'
+            ";
+        }
+
         mysqli_query($conn, $update_query);
     }
 }
